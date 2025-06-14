@@ -33,10 +33,8 @@ RUN git config --global user.name "YudhoPatrianto" && \
 RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" "" --unattended
 RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="gozilla"/g' ~/.zshrc
 # Add User and switch to directory
-RUN useradd -l -u 33333 -G sudo -md /home/workbench_project -s /bin/bash -p workbench_project workbench_project && \
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod && \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
-WORKDIR /home/workbench_project
-
 # Start ZSH
 CMD ["zsh"]
 
