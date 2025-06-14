@@ -10,7 +10,7 @@ ENV LANGUAGE=en_US.UTF-8
 # Install packages
 RUN apt update && \
     apt upgrade -y && \
-    apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev locales wget -y
+    apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev locales wget zsh fonts-powerline -y
 
 # Install Repo
 RUN mkdir -p ~/.bin && \
@@ -32,7 +32,6 @@ RUN git config --global user.name "YudhoPatrianto" && \
 # Set ZSH And change shell theme
 RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" "" --unattended
 RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="gozilla"/g' ~/.zshrc
-
 # Add User and switch to directory
 RUN useradd -l -u 33333 -G sudo -md /home/workbench_project -s /bin/bash -p workbench_project workbench_project && \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
