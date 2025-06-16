@@ -13,11 +13,8 @@ RUN apt update && \
     apt install sudo bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev locales wget zsh fonts-powerline python3 python3-pip python-venv python-is-python3 procps -y
 
 # Install Repo
-RUN mkdir -p ~/.bin && \
-    PATH="${HOME}/.bin:${PATH}" && \
-    curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo && \
-    chmod a+rx ~/.bin/repo && \
-    ln -s ~/.bin/repo /usr/local/bin/repo && \
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo -o /usr/local/bin/repo && \
+    chmod a+rx /usr/local/bin/repo && \
     repo --version
 
 # Set Locale and localtime
@@ -25,6 +22,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen && \
     update-locale LANG=en_US.UTF-8 && \
     ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
 # Set Git
 RUN git config --global user.name "YudhoPatrianto" && \
     git config --global user.email "kydh01123@gmail.com"
