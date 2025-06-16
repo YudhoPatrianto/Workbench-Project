@@ -10,7 +10,7 @@ ENV LANGUAGE=en_US.UTF-8
 # Install packages
 RUN apt update && \
     apt upgrade -y && \
-    apt install sudo bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev locales wget zsh fonts-powerline python python3-pip python-venv -y
+    apt install sudo bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev locales wget zsh fonts-powerline python3 python3-pip python-venv python-is-python3 -y
 
 # Install Repo
 RUN mkdir -p ~/.bin && \
