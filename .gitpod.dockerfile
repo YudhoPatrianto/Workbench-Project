@@ -23,10 +23,6 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     update-locale LANG=en_US.UTF-8 && \
     ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
-# Set Git
-RUN git config --global user.name "YudhoPatrianto" && \
-    git config --global user.email "kydh01123@gmail.com"
-
 # Set ZSH And change shell theme
 RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" "" --unattended
 RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="gozilla"/g' ~/.zshrc
@@ -34,6 +30,10 @@ RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="gozilla"/g' ~/.zshrc
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod && \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 USER gitpod
+
+# Set Git
+RUN git config --global user.name "YudhoPatrianto" && \
+    git config --global user.email "kydh01123@gmail.com"
 
 # Start ZSH
 CMD ["zsh"]
